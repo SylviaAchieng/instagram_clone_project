@@ -2,8 +2,9 @@
 
 @section('content')
 <div class="container">
-    <form action="/profile/" enctype="multipart/form-data" method="post">
+    <form action="/profile/{{$user->id}}" enctype="multipart/form-data" method="post">
         @csrf
+        @method('PATCH')
         
      <div class="row">
         <div class="col-8 offset-2">
@@ -19,6 +20,7 @@
                                 id="title" 
                                 type="text" 
                                 class="form-control @error('title') is-invalid @enderror" 
+                                style="margin-bottom: 10px;"
                                 name="title" 
                                 value="{{ old('caption') ?? $user->profile->title }}" required 
                                 autocomplete="caption" 
@@ -39,6 +41,7 @@
                                 id="description" 
                                 type="text" 
                                 class="form-control @error('description') is-invalid @enderror" 
+                                style="margin-bottom: 10px;"
                                 name="description" 
                                 value="{{ old('caption') ?? $user->profile->description }}" 
                                 required 
@@ -61,6 +64,7 @@
                                 id="url" 
                                 type="text" 
                                 class="form-control @error('url') is-invalid @enderror" 
+                                style="margin-bottom: 10px;"
                                 name="url" value="{{ old('caption') }}" 
                                 required 
                                 autocomplete="caption" 
@@ -68,7 +72,7 @@
 
                                 @error('url')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $error->first('url') }}</strong>
+                                        <strong>{{ $errors->first('url') }}</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -77,7 +81,7 @@
                             <div class="row mb-3">
                                 <label for="image" class="col-md-4 col-form-label text-md-end">Profile Image</label>
 
-                                <input type="file" class="form-control-file" id="image" name="image"/>
+                                <input type="file" class="form-control-file" style="margin-top:" 10px; id="image" name="image"/>
                                 @error('image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $error->first('image') }}</strong>
