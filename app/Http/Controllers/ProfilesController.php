@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use \Intervention\Image\Image;
-
-//use Intervention\Image\Facades\Image;
+use Intervention\Image\Facades\Image;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -43,8 +41,9 @@ class ProfilesController extends Controller
             $image->save();
         }
 
+
         auth()->user()->profile->update(array_merge(
-            $data,
+             $data,
             ['image' => $imagePath],
         ));
 
